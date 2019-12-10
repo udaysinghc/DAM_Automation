@@ -11,5 +11,5 @@ maven-build:
 run-test:
   tags:
     - AutoTest1
-  stage: build
-  script: "mvn test  -DsuiteXmlFile=config-gitlab.xml" -Dcucumber.options='--tags "(@smoke or @sanity or @overnight) and not @ignore and not @manual"'
+  stage: test
+  script: "mvn clean test -DsuiteXmlFile=configs/config-gitlab.xml -Dsurefire.rerunFailingTestsCount=2"

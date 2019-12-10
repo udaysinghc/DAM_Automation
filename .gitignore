@@ -3,3 +3,15 @@
 *.DS_Store
 *.factorypath
 *.eclipse.jdt.apt.core.prefs
+/.apt_generated/
+/.vscode/launch.json
+.idea
+logs/*
+/dependency-reduced-pom.xml
+/cucumber_report.json
+/src/main/reporting/node_modules/
+/src/main/reporting/reporting-linux
+/src/main/reporting/reporting-macos
+/src/main/reporting/reporting-win.exe
+/src/main/reporting/cucumber_report.json
+/src/main/reporting/test/

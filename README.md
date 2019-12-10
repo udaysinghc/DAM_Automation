@@ -2,9 +2,28 @@
 # Automated Testing of the IntelligenceBank platform
 
 
-## Running the Tests
+## Getting Started
 
-mvn test -DsuiteXmlFile=config-default.xml -Dcucumber.options='--tags "(@smoke or @sanity or @overnight) and not @ignore and not @manual"'
+1) Set Credentials for your configuration as environment variables (See "Credentials" below)
+2) Create your own TestNG config
+3) From the command line run the following:
+
+mvn test -DsuiteXmlFile=configs/config-default.xml -Dcucumber.options='--tags "@UserManagement"'
+
+mvn test -DsuiteXmlFile=configs/config-default.xml -Dcucumber.options='--tags "(@smoke) and not @ignore and not @manual"'
+
+mvn test -DsuiteXmlFile=configs/config-default.xml -Dcucumber.options='--tags "(@smoke or @sanity or @overnight) and not @ignore and not @manual"'
+
+
+### Selfish shortcut for myself :-)
+
+mvn test -DsuiteXmlFile=configs/config-stephans-mac.xml -Dcucumber.options='--tags "(@UserManagement)"'
+
+mvn test -DsuiteXmlFile=configs/config-stephans-mac.xml -Dcucumber.options='--tags "(@smoke) and not @ignore and not @manual"'
+
+mvn test -DsuiteXmlFile=configs/config-stephans-mac.xml -Dcucumber.options='--tags "(@smoke or @sanity or @overnight) and not @ignore and not @manual"'
+
+mvn test -DsuiteXmlFile=configs/config-stephans-mac.xml -Dcucumber.options='--tags "(@api)"'
 
 
 ## Automated Test Suites
@@ -52,22 +71,21 @@ Credentials used while testing will be stored as environment variable setting in
 They will have to be configured on the machine where the Cucumber tests are running and the values on the target environment. 
 
 For example, for running the tests against the pre-production environment, the following env vars are needed:
-ib-autotest-preprod-user-admin-username
-ib-autotest-preprod-user-admin-password
+ib-autotest-preprod-creds-admin-username
+ib-autotest-preprod-creds-admin-password
 
-For pre-staging however:
-ib-autotest-prestaging-user-admin-username
-ib-autotest-prestaging-user-admin-password
+For staging however:
+ib-autotest-staging-creds-admin-username
+ib-autotest-staging-creds-admin-password
 
 The full list of required credential environment variables:
-ib-autotest-{{ENV}}-users-default-username
-ib-autotest-{{ENV}}-users-default-password
-ib-autotest-{{ENV}}-users-admin-username
-ib-autotest-{{ENV}}-users-admin-password
-ib-autotest-{{ENV}}-users-incorrect-username
-ib-autotest-{{ENV}}-users-incorrect-password
-ib-autotest-{{ENV}}-users-blank-username
-ib-autotest-{{ENV}}-users-blank-password
+ib-autotest-{{ENV}}-creds-default-username
+ib-autotest-{{ENV}}-creds-default-password
+ib-autotest-{{ENV}}-creds-admin-username
+ib-autotest-{{ENV}}-creds-admin-password
+ib-autotest-{{ENV}}-creds-nonexisting-username
+ib-autotest-{{ENV}}-creds-invalid-username
+ib-autotest-{{ENV}}-creds-invalid-password
 
 Where {{ENV}} is one of the following environments:
 prestaging
@@ -79,6 +97,26 @@ production-au
 production-us
 production-eu
 
-Note: Customer specific environments are not supported (for now), examples are DPC, Deloite, etc
+Note: Customer specific environments are not supported (for now). Examples are DPC, Deloite, etc
+
+### Scripts to permanently add credentials
+
+#### MAC
+
+echo 'export ib_autotest_{{ENV}}_creds_default_username=XXXXXXXXXXXXXXX' >> ~/.bash_profile
+echo 'export ib_autotest_{{ENV}}_creds_default_password=XXXXXXXXXXXXXXX' >> ~/.bash_profile
+
+#### Windows
+
+How to Set Environment Variables in Windows - YouTube
+https://www.youtube.com/watch?v=bEroNNzqlF4
+
+Example:
+setx ib-autotest-staging-creds-default-username "some.username@intelligencebank.com"
+setx ib-autotest-staging-creds-default-password "Pa$$word1983***"
+setx ib-autotest-staging-creds-admin-username "some.username@intelligencebank.com"
+setx ib-autotest-staging-creds-admin-password "Pa$$word1983***"
+
+#### Linux
 
 
