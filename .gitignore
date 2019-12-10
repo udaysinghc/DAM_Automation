@@ -1,0 +1,5 @@
+/target/
+/test-output/
+*.DS_Store
+*.factorypath
+*.eclipse.jdt.apt.core.prefs
